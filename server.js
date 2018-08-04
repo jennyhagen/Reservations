@@ -48,20 +48,24 @@ app.get("/reserve", function(req, res) {
     res.sendFile(path.join(__dirname, "reserve.html"));
 });
 
-// Displays all characters
-app.get("/api/characters", function(req, res) {
-    return res.json(characters);
+app.get("/tables", function(req, res) {
+    res.sendFile(path.join(__dirname, "tables.html"));
+});
+
+// Displays all reservations
+app.get("/api/reservations", function(req, res) {
+    return res.json(reservations);
 });
 
 // Displays a single character, or returns false
-app.get("/api/characters/:character", function(req, res) {
+app.get("/api/reservations/:character", function(req, res) {
     var chosen = req.params.character;
 
     console.log(chosen);
 
-    for (var i = 0; i < characters.length; i++) {
-        if (chosen === characters[i].routeName) {
-            return res.json(characters[i]);
+    for (var i = 0; i < reservations.length; i++) {
+        if (chosen === reservations[i].routeName) {
+            return res.json(reservations[i]);
         }
     }
 
