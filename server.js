@@ -22,6 +22,7 @@ app.use(bodyParser.json({ type: 'application/vnd.api+json' }))
 app.get('/:endpoint?', function (req, res) {
   switch (req.params.endpoint) {
     case undefined:
+      break
     case '/':
       sendFile(res, 'index.html')
       break
@@ -51,7 +52,7 @@ app.get('/api/:endpoint?', function (req, res) {
   }
 })
 
-app.post('/tables', function (req, res) {
+app.post('tables.html', function (req, res) {
   const table = req.body
 
   let response
