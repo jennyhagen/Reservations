@@ -1,7 +1,7 @@
 // @Dependencies
 const express = require('express')
 const bodyParser = require('body-parser')
-const morgan = require('morgan')
+
 var path = require("path");
 
 
@@ -14,7 +14,7 @@ const tables = []
 const waitlist = []
 
 // @Middleware
-app.use(morgan('combined'))
+
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.text())
 app.use(bodyParser.json())
