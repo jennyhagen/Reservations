@@ -2,6 +2,8 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 const morgan = require('morgan')
+var path = require("path");
+
 
 // @Boilerplate
 const app = express()
@@ -38,40 +40,40 @@ app.get('/:endpoint?', function (req, res) {
   }
 })
 
-app.get('/api/:endpoint?', function (req, res) {
-  switch (req.params.endpoint) {
-    case 'tables':
-      res.json(tables)
-      break
-    case 'waitlist':
-      res.json(tables.slice(5))
-      break
-    default:
-      res.status(404).json({error: 'Not Found'})
-      break
-  }
+app.get('/api/:endpoint?', function(req, res) {
+    switch (req.params.endpoint) {
+        case 'tables':
+            res.json(tables)
+            break
+        case 'waitlist':
+            res.json(tables.slice(5))
+            break
+        default:
+            res.status(404).json({ error: 'Not Found' })
+            break
+    }
 })
 
-app.post('tables.html', function (req, res) {
+app.post('/api/:endpoint?', function (req, res) {
   const table = req.body
 
-  let response
-  if (!isValid(table)) {
-    res.status(400)
-    response = {error: 'Malformed input. Check your submission and try again.'}
-  } else {
-    res.status(201)
-    tables.push(table)
-  }
+    let response
+    if (!isValid(table)) {
+        res.status(400)
+        response = { error: 'Malformed input. Check your submission and try again.' }
+    } else {
+        res.status(201)
+        tables.push(table)
+    }
 
-  res.json(response)
+    res.json(response)
 })
 
 // @Start
-app.listen(PORT, function (err) {
-  if (err) {
-    return console.error(err)
-  }
+app.listen(PORT, function(err) {
+    if (err) {
+        return console.error(err)
+    }
 
-  console.log(`Listening on port ${PORT}.`)
+    console.log(`Listening on port ${PORT}.`)
 })
