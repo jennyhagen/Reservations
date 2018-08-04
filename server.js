@@ -21,26 +21,59 @@ app.use(bodyParser.json())
 app.use(bodyParser.json({ type: 'application/vnd.api+json' }))
 
 // @Routes
-app.get('/:endpoint?', function (req, res) {
-  switch (req.params.endpoint) {
-    case undefined:
-      break
-    case '/':
-      sendFile(res, 'index.html')
-      break
-    case 'reserve':
-      sendFile(res, 'reserve.html')
-      break
-    case 'tables':
-      sendFile(res, 'tables.html')
-      break
-    default:
-      sendFile(res, '404.html')
-      break
-  }
-})
+// app.get('/:endpoint?', function(req, res) {
+//     switch (req.params.endpoint) {
+//         case undefined:
+//             break
+//         case '/':
+//             sendFile(res, 'index.html')
+//             break
+//         case 'reserve':
+//             sendFile(res, 'reserve.html')
+//             break
+//         case 'tables':
+//             sendFile(res, 'tables.html')
+//             break
+//         default:
+//             sendFile(res, '404.html')
+//             break
+//     }
+// })
 
-app.get('/api/:endpoint?', function(req, res) {
+app.get("/", function(req, res) {
+    res.sendFile(path.join(__dirname, "index.html"));
+});
+
+app.get("/reserve", function(req, res) {
+    res.sendFile(path.join(__dirname, "reserve.html"));
+});
+
+app.get("/tables", function(req, res) {
+    res.sendFile(path.join(__dirname, "tables.html"));
+});
+
+// Displays all characters
+app.get("/api/characters", function(req, res) {
+    return res.json(characters);
+});
+
+// Displays a single character, or returns false
+app.get("/api/characters/:character", function(req, res) {
+    var chosen = req.params.character;
+
+    console.log(chosen);
+
+    for (var i = 0; i < characters.length; i++) {
+        if (chosen === characters[i].routeName) {
+            return res.json(characters[i]);
+        }
+    }
+
+    return res.json(false);
+});
+
+
+app.get('/api/:reservation', function(req, res) {
     switch (req.params.endpoint) {
         case 'tables':
             res.json(tables)
@@ -54,8 +87,8 @@ app.get('/api/:endpoint?', function(req, res) {
     }
 })
 
-app.post('/api/:endpoint?', function (req, res) {
-  const table = req.body
+app.post('/api/:reservation', function(req, res) {
+    const table = req.body
 
     let response
     if (!isValid(table)) {
