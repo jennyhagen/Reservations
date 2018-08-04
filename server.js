@@ -67,20 +67,20 @@ app.get('/api/reservations', function(req, res) {
     //         break
     // })
 
-app.post('/api/reservations', function(req, res) {
-    const table = req.body
+// app.post('/api/reservations', function(req, res) {
+//     const table = req.body
 
-    let response
-    if (!isValid(table)) {
-        res.status(400)
-        response = { error: 'Malformed input. Check your submission and try again.' }
-    } else {
-        res.status(201)
-        tables.push(table)
-    }
+//     let response
+//     if (!isValid(table)) {
+//         res.status(400)
+//         response = { error: 'Malformed input. Check your submission and try again.' }
+//     } else {
+//         res.status(201)
+//         tables.push(table)
+//     }
 
-    res.json(response)
-})
+//     res.json(response)
+// })
 
 // @Start
 app.listen(PORT, function(err) {
