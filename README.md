@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 -----------------------------------------
 # KU Coding Boot Camp
 
@@ -79,4 +80,9 @@ Please see bootcampspot-v2.com
 -----------------------------------------
 
 
+=======
+# Reservations
+
+//Quick Reservation applictaion by Jenny Nadia Racheal and Nick. 
+>>>>>>> fe325a4a1552c582cf44927ce2fdf04ecd0cd909
 
