@@ -61,12 +61,12 @@
       event.preventDefault()
       console.log('Submit clicked.')
       const reservation = {
-        name: contentsOf('#name-input'),
-        email: contentsOf('#email-input'),
-        phoneNumber: contentsOf('#phone-input'),
-        id: contentsOf('#id-input')
+        name: $("#name-input").val().trim(),
+        email: $('#email-input').val().trim(),
+        phoneNumber: $('#phone-input').val().trim(),
+        id: $('#id-input').val().trim()
       }
-      $.post('/tables', reservation)
+      $.post('/tables', newreservation)
        .done(console.log)
        .fail(console.error)
     })
