@@ -14,29 +14,35 @@ app.use(bodyParser.json());
 
 // Basic route that sends the user first to the AJAX Page
 app.get("/", function(req, res) {
-    res.sendFile(path.join(__dirname, "view.html"));
+    res.sendFile(path.join(__dirname, "index.html"));
 });
 
 app.get("/add", function(req, res) {
-    res.sendFile(path.join(__dirname, "add.html"));
+    res.sendFile(path.join(__dirname, "reserve.html"));
+});
+
+app.get("/add", function(req, res) {
+    res.sendFile(path.join(__dirname, "tables.html"));
 });
 
 // Create new reservation - takes in JSON input
 app.post("/", function(req, res) {
     // req.body hosts is equal to the JSON post sent from the user
     // This works because of our body-parser middleware
-    var newreservation = req.body;
 
+    var newres = req.body;
+  
     // Using a RegEx Pattern to remove spaces from newCharacter
     // You can read more about RegEx Patterns later https://www.regexbuddy.com/regex.html
-    newcharacter.routeName = newcharacter.name.replace(/\s+/g, "").toLowerCase();
+    newres.routeName = newres.name.replace(/\s+/g, "").toLowerCase();
+  
+    console.log(newres);
+  
+    characters.push(newres);
+  
+    res.json(newres);
+  });
 
-    console.log(newcharacter);
-
-    characters.push(newcharacter);
-
-    res.json(newcharacter);
-});
 
 // Starts the server to begin listening
 app.listen(PORT, function() {
