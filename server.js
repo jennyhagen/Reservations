@@ -52,28 +52,7 @@ app.get("/tables", function(req, res) {
     res.sendFile(path.join(__dirname, "tables.html"));
 });
 
-// Displays all characters
-app.get("/api/characters", function(req, res) {
-    return res.json(characters);
-});
-
-// Displays a single character, or returns false
-app.get("/api/characters/:character", function(req, res) {
-    var chosen = req.params.character;
-
-    console.log(chosen);
-
-    for (var i = 0; i < characters.length; i++) {
-        if (chosen === characters[i].routeName) {
-            return res.json(characters[i]);
-        }
-    }
-
-    return res.json(false);
-});
-
-
-app.get('/api/:reservation', function(req, res) {
+app.get('/api/reservations', function(req, res) {
     switch (req.params.endpoint) {
         case 'tables':
             res.json(tables)
@@ -87,7 +66,7 @@ app.get('/api/:reservation', function(req, res) {
     }
 })
 
-app.post('/api/:reservation', function(req, res) {
+app.post('/api/reservations', function(req, res) {
     const table = req.body
 
     let response
@@ -108,7 +87,7 @@ app.listen(PORT, function(err) {
         return console.error(err)
     }
 
-    console.log(`Listening on port ${PORT}.`)
+    console.log("Listening on port " +PORT)
 })
 
 var reservations = [
