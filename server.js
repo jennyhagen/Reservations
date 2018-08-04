@@ -4,7 +4,6 @@ const bodyParser = require('body-parser')
 
 var path = require("path");
 
-
 // @Boilerplate
 const app = express()
 const PORT = process.env.PORT || 3000;
@@ -18,26 +17,6 @@ const waitlist = []
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.text())
 app.use(bodyParser.json())
-
-// @Routes
-// app.get('/:endpoint?', function(req, res) {
-//     switch (req.params.endpoint) {
-//         case undefined:
-//             break
-//         case '/':
-//             sendFile(res, 'index.html')
-//             break
-//         case 'reserve':
-//             sendFile(res, 'reserve.html')
-//             break
-//         case 'tables':
-//             sendFile(res, 'tables.html')
-//             break
-//         default:
-//             sendFile(res, '404.html')
-//             break
-//     }
-// })
 
 app.get("/", function(req, res) {
     res.sendFile(path.join(__dirname, "index.html"));
@@ -54,33 +33,6 @@ app.get("/tables", function(req, res) {
 app.get('/api/reservations', function(req, res) {
     return res.json(reservations);
 });
-
-    // switch (req.params.endpoint) {
-    //     case 'tables':
-    //         res.json(tables)
-    //         break
-    //     case 'waitlist':
-    //         res.json(tables.slice(5))
-    //         break
-    //     default:
-    //         res.status(404).json({ error: 'Not Found' })
-    //         break
-    // })
-
-// app.post('/api/reservations', function(req, res) {
-//     const table = req.body
-
-//     let response
-//     if (!isValid(table)) {
-//         res.status(400)
-//         response = { error: 'Malformed input. Check your submission and try again.' }
-//     } else {
-//         res.status(201)
-//         tables.push(table)
-//     }
-
-//     res.json(response)
-// })
 
 // @Start
 app.listen(PORT, function(err) {
