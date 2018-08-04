@@ -48,10 +48,8 @@
 
   
   
-  <script
-    src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
     
-  </script>
   
     const contentsOf = function contentsOf (id) {
       return $(id).val().trim()
@@ -66,10 +64,12 @@
         phoneNumber: $('#phone-input').val().trim(),
         id: $('#id-input').val().trim()
       }
-      $.post('/tables', newreservation)
-       .done(console.log)
-       .fail(console.error)
-    })
+      $.post("api/reservations", newreservation)
+        .then(function(data) {
+          console.log("tables.html", data);
+          alert("Reservation Accepted")
+        });
+    });
   </script>
 </body>
 </html>

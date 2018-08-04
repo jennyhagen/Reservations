@@ -58,9 +58,9 @@
        const reservationsNode = $('#reservations')
        data.forEach(function (reservation, index) {
          if (index < pivot) {
-           reservationsNode.append($('<li>').text(reservation.name))
+           reservationsNode.append($('<li>').text(reservation.uniqueid))
          } else {
-           waitlistNode.append($('<li>').text(reservation.name))
+           waitlistNode.append($('<li>').text(reservation.uniqueid))
          }
        })
      })
