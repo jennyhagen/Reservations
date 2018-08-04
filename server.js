@@ -52,18 +52,20 @@ app.get("/tables", function(req, res) {
 });
 
 app.get('/api/reservations', function(req, res) {
-    switch (req.params.endpoint) {
-        case 'tables':
-            res.json(tables)
-            break
-        case 'waitlist':
-            res.json(tables.slice(5))
-            break
-        default:
-            res.status(404).json({ error: 'Not Found' })
-            break
-    }
-})
+    return res.json(reservations);
+});
+
+    // switch (req.params.endpoint) {
+    //     case 'tables':
+    //         res.json(tables)
+    //         break
+    //     case 'waitlist':
+    //         res.json(tables.slice(5))
+    //         break
+    //     default:
+    //         res.status(404).json({ error: 'Not Found' })
+    //         break
+    // })
 
 app.post('/api/reservations', function(req, res) {
     const table = req.body
